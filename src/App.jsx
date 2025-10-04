@@ -170,64 +170,112 @@ const App = () => {
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl font-bold mb-4">Launch Your Token in <span className="text-teal-400">Minutes</span></h1>
           <p className="text-gray-300 mb-8">Professional token creation platform with enterprise-grade security and multichain support.</p>
-        </div>
-      </section>
-
-      {/* 100 TOKENS SECTION */}
-      <section className="py-12">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold mb-4">Live Projects on minttoken.fun</h2>
-            <p className="text-gray-300">100+ tokens launched across the Unit Network ecosystem</p>
-            
-            <div className="max-w-md mx-auto mt-6">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                <input
-                  type="text"
-                  placeholder="Search tokens..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-gray-400"
-                />
+          
+          {/* Token Creation Form */}
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-slate-800/60 backdrop-blur-sm rounded-2xl p-8 max-w-2xl mx-auto border border-slate-700">
+              <div className="grid md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-400 mb-2">Token Name</label>
+                  <input type="text" placeholder="Project Token" className="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-blue-500 focus:outline-none" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-400 mb-2">Token Symbol</label>
+                  <input type="text" placeholder="PRJ" className="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-blue-500 focus:outline-none" maxLength="10" />
+                </div>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-400 mb-2">Total Supply</label>
+                  <input type="number" placeholder="1,000,000" className="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-blue-500 focus:outline-none" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-400 mb-2">Decimals</label>
+                  <select className="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-3 text-white focus:border-blue-500 focus:outline-none">
+                    <option>18</option>
+                    <option>9</option>
+                    <option>6</option>
+                    <option>3</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div className="mb-6">
+                <label className="block text-sm font-medium text-gray-400 mb-2">Token Logo (Optional)</label>
+                <div className="bg-slate-700 border-2 border-dashed border-slate-600 rounded-lg flex items-center justify-center h-32 cursor-pointer">
+                  <span className="text-gray-400">Upload logo (PNG, JPG, SVG)</span>
+                </div>
+              </div>
+              
+              <button className="w-full bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 rounded-lg font-semibold py-4 transition-all">
+                <Rocket className="w-5 h-5 inline mr-2" />
+                LAUNCH TOKEN
+              </button>
+              
+              <div className="grid grid-cols-3 gap-4 mt-6 text-sm text-gray-400">
+                <div className="flex items-center">
+                  <span className="w-2 h-2 bg-teal-400 rounded-full mr-2"></span>
+                  <span>Audited Contracts</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="w-2 h-2 bg-teal-400 rounded-full mr-2"></span>
+                  <span>Auto Liquidity</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="w-2 h-2 bg-teal-400 rounded-full mr-2"></span>
+                  <span>Multichain</span>
+                </div>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Recently Launched Projects */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-6">Recently Launched Projects</h2>
+            <p className="text-gray-300 max-w-2xl mx-auto">
+              100+ tokens launched across the Unit Network ecosystem
+            </p>
+          </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredTokens.slice(0, 12).map((token) => (
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {filteredTokens.slice(0, 3).map((token, index) => (
               <div
                 key={token.id}
-                className="bg-slate-800 rounded-xl p-3 sm:p-4 cursor-pointer hover:border-blue-500 border border-slate-700"
+                className="bg-slate-800 rounded-xl p-6 border border-slate-700 hover:border-blue-500/30 transition-all cursor-pointer"
                 onClick={() => window.open(token.website, '_blank')}
               >
-                <div className="flex items-center space-x-3 mb-3">
+                <div className="flex items-center space-x-3 mb-4">
                   {token.image ? (
-                    <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
-                      <img 
-                        src={token.image} 
-                        alt={token.symbol} 
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                    <img src={token.image} alt={token.symbol} className="w-10 h-10 rounded-full object-cover" />
                   ) : (
-                    <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="font-bold text-white text-xs">{token.symbol.substring(0, 2)}</span>
+                    <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full flex items-center justify-center">
+                      <span className="font-bold text-white text-sm">{token.symbol.substring(0, 2)}</span>
                     </div>
                   )}
-                  <div className="min-w-0">
-                    <h3 className="font-bold text-sm truncate">{token.name}</h3>
-                    <p className="text-xs text-gray-400">{token.symbol}</p>
+                  <div>
+                    <h3 className="font-bold">{token.name}</h3>
+                    <p className="text-sm text-gray-400">{token.symbol}</p>
                   </div>
                 </div>
-                <p className="text-xs text-gray-300 line-clamp-2">{token.description}</p>
+                <div className="flex items-center justify-between text-xs text-gray-400">
+                  <span className="flex items-center">
+                    <span className="w-2 h-2 bg-purple-400 rounded-full mr-1"></span>
+                    Solana
+                  </span>
+                  <span>Live</span>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FOOTER */}
+      {/* Footer */}
       <footer className="py-8 border-t border-white/10">
         <div className="container mx-auto px-4 text-center">
           <p className="text-gray-500">© 2025 minttoken.fun • Professional Token Launch Platform</p>
