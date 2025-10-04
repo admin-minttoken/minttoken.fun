@@ -1001,19 +1001,25 @@ const App = () => {
                 className="bg-slate-800 rounded-xl p-6 cursor-pointer hover:border-blue-500 border border-slate-700"
                 onClick={() => window.open(token.website, '_blank')}
               >
+
+
+
                 <div className="flex items-center space-x-3 mb-4">
-                  {token.image ? (
-                    <img src={token.image} alt={token.symbol} className="w-12 h-12 rounded-full object-cover" />
-                  ) : (
-                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full flex items-center justify-center">
-                      <span className="font-bold text-white text-sm">{token.symbol.substring(0, 2)}</span>
-                    </div>
-                  )}
-                  <div>
-                    <h3 className="font-bold">{token.name}</h3>
-                    <p className="text-sm text-gray-400">{token.symbol}</p>
-                  </div>
-                </div>
+  {token.image ? (
+    <img src={token.image} alt={token.symbol} className="w-10 h-10 rounded-full object-cover" />
+  ) : (
+    <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full flex items-center justify-center">
+      <span className="font-bold text-white text-xs">{token.symbol.substring(0, 2)}</span>
+    </div>
+  )}
+  <div>
+    <h3 className="font-bold text-sm">{token.name}</h3>
+    <p className="text-xs text-gray-400">{token.symbol}</p>
+  </div>
+</div>
+
+
+                
                 <p className="text-sm text-gray-300 line-clamp-2">{token.description}</p>
               </div>
             ))}
